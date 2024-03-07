@@ -10,8 +10,10 @@ app.use(express.json());
 dotenv.config();
 
 //routes
-app.get('/', (req, res) => {
-  res.send('This an REST API for an Event App');
+app.get('/', async (req, res) => {
+  // res.send('This an REST API for an Event App');
+  const events = await prisma.event.findMany();
+  res.send(events);
 });
 app.use('/api/events', eventsRouter);
 
