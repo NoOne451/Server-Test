@@ -2,17 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { eventsRouter } from './routes/events.js';
-import { PrismaClient } from '@prisma/client';
+import prisma from './prisma/client.js';
 
-export const prisma = new PrismaClient({
-  log: ['query', 'error', 'warn'],
-});
 const app = express();
-
-//database
-
-//middleware & configuration
-
 app.use(cors());
 app.use(express.json());
 dotenv.config();
@@ -31,14 +23,16 @@ app.use((req, res, next) => {
 
 var port = process.env.PORT || 8080;
 
-prisma
-  .$connect()
-  .then(() => {
-    console.log('Database connected');
-    app.listen(port, () => {
-      console.log(`Server is running on port http://localhost:${port}/`);
+(async function main() {
+  await prisma
+    .$connect()
+    .then(() => {
+      console.log('Database connected');
+      app.listen(port, () => {
+        console.log(`Server is running on port http://localhost:${port}/`);
+      });
+    })
+    .catch((e) => {
+      console.log('Error connecting to database', e);
     });
-  })
-  .catch((e) => {
-    console.log('Error connecting to database', e);
-  });
+})();
