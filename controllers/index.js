@@ -1,8 +1,11 @@
-import prisma from '../prisma/client.js';
+import { PrismaClient } from '@prisma/client';
+
+export const prisma = new PrismaClient();
 
 export const getEvents = async (req, res) => {
   try {
     const events = await prisma.event.findMany();
+
     res.send(events);
   } catch (error) {
     console.log(error);

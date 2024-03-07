@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { eventsRouter } from './routes/events.js';
-import prisma from './prisma/client.js';
+import { prisma } from './controllers/index.js';
 
 const app = express();
 app.use(cors());
