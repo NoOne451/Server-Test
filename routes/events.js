@@ -1,6 +1,4 @@
 import { Router } from 'express';
-// import { prisma } from '..';
-
 import { createEvent, getEvents } from '../controllers/index.js';
 export const eventsRouter = Router();
 
