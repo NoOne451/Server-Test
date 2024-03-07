@@ -1,4 +1,4 @@
-import { prisma } from './../prisma/client.js';
+import { prisma } from './../index.js';
 export const getEvents = async (req, res) => {
   try {
     const events = await prisma.event.findMany();

@@ -1,8 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { prisma } from './prisma/client.js';
 import { eventsRouter } from './routes/events.js';
+import { PrismaClient } from '@prisma/client';
+
+export const prisma = new PrismaClient({
+  log: ['query', 'error', 'warn'],
+});
 const app = express();
 
 //database

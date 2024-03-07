@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { createEvent, getEvents } from './../controllers/index.js';
+
 export const eventsRouter = Router();
 
 eventsRouter.get('/', getEvents);
