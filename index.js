@@ -11,9 +11,13 @@ dotenv.config();
 
 //routes
 app.get('/', async (req, res) => {
+  try {
+    const events = await prisma.event.findMany();
+    res.send(events);
+  } catch (error) {
+    res.send(error);
+  }
   // res.send('This an REST API for an Event App');
-  const events = await prisma.event.findMany();
-  res.send(events);
 });
 app.use('/api/events', eventsRouter);
 
