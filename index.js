@@ -23,16 +23,21 @@ app.use((req, res, next) => {
 
 var port = process.env.PORT || 8080;
 
-(async function main() {
-  await prisma
-    .$connect()
-    .then(() => {
-      console.log('Database connected');
-      app.listen(port, () => {
-        console.log(`Server is running on port http://localhost:${port}/`);
-      });
-    })
-    .catch((e) => {
-      console.log('Error connecting to database', e);
-    });
-})();
+// (async function main() {
+//   await prisma
+//     .$connect()
+//     .then(() => {
+//       console.log('Database connected');
+//       app.listen(port, () => {
+//         console.log(`Server is running on port http://localhost:${port}/`);
+//       });
+//     })
+//     .catch((e) => {
+//       console.log('Error connecting to database', e);
+//     });
+// })();
+
+app.listen(port, async () => {
+  await prisma.$connect();
+  console.log(`Server is running on port http://localhost:${port}/`);
+});
