@@ -44,6 +44,8 @@ var port = process.env.PORT || 8080;
 // })();
 
 app.listen(port, async () => {
-  await prisma.$connect();
+  await prisma.$connect().catch((e) => {
+    console.log('Error connecting to database', e);
+  });
   console.log(`Server is running on port http://localhost:${port}/`);
 });
