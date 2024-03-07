@@ -15,7 +15,6 @@ app.get('/user', async (req, res) => {
     const users = await prisma.user.findMany({
       include: {
         posts: true,
-        liked: true,
       },
     });
     res.status(200).json(users);
@@ -47,7 +46,6 @@ app.get('/post', async (req, res) => {
     const posts = await prisma.post.findMany({
       include: {
         user: true,
-        likedBy: true,
       },
     });
     res.status(200).json(posts);
