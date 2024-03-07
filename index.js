@@ -15,7 +15,7 @@ app.get('/', async (req, res) => {
     const events = await prisma.event.findMany();
     res.send(events);
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
   // res.send('This an REST API for an Event App');
 });
