@@ -4,7 +4,7 @@ export const prisma = new PrismaClient();
 
 export const getEvents = async (req, res) => {
   try {
-    const events = await prisma.event.findMany();
+    const events = await prisma?.event.findMany();
 
     res.send(events);
   } catch (error) {
@@ -26,7 +26,7 @@ export const createEvent = async (req, res) => {
       return res.status(400).send('Image Url is required');
 
     //create
-    const event = await prisma.event.create({
+    const event = await prisma?.event.create({
       data: {
         ...req.body,
       },
