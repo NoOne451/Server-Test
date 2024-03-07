@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-export const prisma = new PrismaClient();
+import prisma from '../prisma/client.js';
 
 export const getEvents = async (req, res) => {
   try {
