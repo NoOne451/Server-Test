@@ -51,9 +51,8 @@ export const getSingleEvent = async (req, res) => {
       },
     });
 
-    if (!event) {
-      return res.status(404).send('Event not found');
-    }
+    if (!event) return res.status(404).send('Event not found');
+
     res.send(event);
   } catch (error) {
     console.log(error);
@@ -92,6 +91,9 @@ export const updateEvent = async (req, res) => {
         time,
       },
     });
+
+    if (!event) return res.status(404).send('Event not found');
+
     res.send(event);
   } catch (error) {
     console.log(error);
@@ -109,7 +111,8 @@ export const deleteEvent = async (req, res) => {
         id: eventId,
       },
     });
-    console.log(event);
+    if (!event) return res.status(404).send('Event not found');
+
     res.send(event);
   } catch (error) {
     console.log(error);
